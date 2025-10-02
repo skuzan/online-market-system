@@ -170,7 +170,7 @@ const onlineStore = {
       console.log(`${category} kategorisi Ürün Listesi`);
       searchCategory.forEach((item) => {
         console.log(
-          `${item.name} => ${item.price}, Stok Miktarı : ${item.stock}`
+          `${item.name} => Fiyat : ${item.price}₺, Stok Miktarı : ${item.stock}`
         );
       });
     }
@@ -191,7 +191,6 @@ onlineStore.addToCart(
 );
 
 onlineStore.removeFromCart("HP LaserJet M111w Yazıcı Beyaz", 3);
-console.log(onlineStore.products);
 
 onlineStore.addToCart("HP LaserJet M111w Yazıcı Beyaz", 5);
 
