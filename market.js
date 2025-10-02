@@ -56,14 +56,16 @@ const onlineStore = {
 
   addProduct(name, price, stock, category) {
     this.products.push({
-      name: name,
-      price: price,
-      stock: stock,
-      category: category,
+      name,
+      price,
+      stock,
+      category,
     });
+    console.log("--------------------------------");
+    console.log(`${name} ürünü başarıyla eklendi.`);
   },
 
-  // ? 1- addToCart
+  // ? 2- addToCart
   //----------------------------------------
 
   addToCart(name, quantity) {
@@ -93,13 +95,83 @@ const onlineStore = {
       });
     }
     product.stock -= quantity;
+    console.log("--------------------------------");
+    console.log(`${quantity} adet ${name} sepete eklendi.`);
+    this.calculateTotal();
+    console.log(`Kalan Stok : ${product.stock}`);
+  },
+
+  // ? 3- removeFromCart
+  //----------------------------------------
+
+  removeFromCart(name, quantity) {
+    const removeproduct = this.card.find(
+      (item) => item.name.toUpperCase() === name.toUpperCase()
+    );
+
+    if (!removeproduct) {
+      console.log("--------------------------------");
+      console.log(`"${name}" isimli ürün sepette bulunamadı.`);
+      return;
+    }
+    if (removeproduct.quantity > quantity) {
+      removeproduct.quantity -= quantity;
+      const product = this.products.find((item) => item.name === name);
+      if (product) {
+        product.stock += quantity;
+        console.log(`${quantity} adet ${name} sepetten çıkarıldı.`);
+        this.calculateTotal();
+      }
+    } else {
+      removeproduct.quantity = 0;
+      const product = this.products.find((item) => item.name === name);
+      if (product) {
+        product.stock += quantity;
+        console.log("--------------------------------");
+        console.log(`${quantity} adet ${name} sepetten çıkarıldı.`);
+      }
+      this.calculateTotal();
+    }
+  },
+
+  // ? 4- calculateTotal
+  //----------------------------------------
+
+  calculateTotal() {
     this.totalCartPrice = this.card.reduce(
       (acc, item) => acc + item.price * item.quantity,
       0
     );
-    console.log(`${quantity} adet ${name} sepete eklendi.`);
     console.log(`Sepet Toplamı : ${this.totalCartPrice} ₺`);
-    console.log(`Kalan Stok : ${product.stock}`);
+  },
+
+  // ? 5- listCard
+  //----------------------------------------
+
+  listCard() {
+    console.log("----------------");
+    console.log("Sepeti Görüntüle");
+    this.card.forEach((item) => {
+      console.log(`Ürün Adı : ${item.name}`);
+    });
+    this.calculateTotal();
+  },
+
+  // ? 6- listProductsByCategory(category)
+  //----------------------------------------
+  listProductsByCategory(category) {
+    const searchCategory = this.products.filter(
+      (item) => item.category.toUpperCase() === category.toUpperCase()
+    );
+    if (searchCategory) {
+      console.log("-----------------------------------");
+      console.log(`${category} kategorisi Ürün Listesi`);
+      searchCategory.forEach((item) => {
+        console.log(
+          `${item.name} => ${item.price}, Stok Miktarı : ${item.stock}`
+        );
+      });
+    }
   },
 };
 
@@ -110,5 +182,15 @@ onlineStore.addProduct(
   "Laptop"
 );
 
-onlineStore.addToCart("HP LaserJet M111w Yazıcı Beyaz", 2);
-onlineStore.addToCart("HP LaserJet M111w Yazıcı Beyaz", 2);
+onlineStore.addToCart("HP LaserJet M111w Yazıcı Beyaz", 3);
+onlineStore.addToCart(
+  "ACER Aspire Lite 16/Core i5-1235U/8GB RAM /512 GB SSD/16''/ Win 11H",
+  1
+);
+
+onlineStore.removeFromCart("HP LaserJet M111w Yazıcı Beyaz", 3);
+console.log(onlineStore.products);
+
+onlineStore.addToCart("HP LaserJet M111w Yazıcı Beyaz", 5);
+
+console.log(onlineStore.listProductsByCategory("Laptop"));
