@@ -123,10 +123,10 @@ const onlineStore = {
         this.calculateTotal();
       }
     } else {
-      removeproduct.quantity = 0;
+      this.card = this.card.filter((item) => item.quantity > 0);
       const product = this.products.find((item) => item.name === name);
       if (product) {
-        product.stock += quantity;
+        product.stock += removeproduct.quantity;
         console.log("--------------------------------");
         console.log(`${quantity} adet ${name} sepetten çıkarıldı.`);
       }
@@ -165,7 +165,7 @@ const onlineStore = {
     const searchCategory = this.products.filter(
       (item) => item.category.toUpperCase() === category.toUpperCase()
     );
-    if (searchCategory) {
+    if (searchCategory.length > 0) {
       console.log("-----------------------------------");
       console.log(`${category} kategorisi Ürün Listesi`);
       searchCategory.forEach((item) => {
@@ -173,6 +173,9 @@ const onlineStore = {
           `${item.name} => Fiyat : ${item.price}₺, Stok Miktarı : ${item.stock}`
         );
       });
+    } else {
+      console.log("-----------------------------------");
+      console.log(`Bu kategoride ürün bulunmamaktadır.`);
     }
   },
 };
