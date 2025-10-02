@@ -2,46 +2,46 @@ const onlineStore = {
   products: [
     {
       name: "ACER Nitro ANV15-51-5648/ Intel I5-13420H/ 8GB Ram/ 1TB SSD/ RTX 3050/ 15.6''/ W11",
-      price: 36.999,
+      price: 36999,
       stock: 10,
       category: "Laptop",
     },
 
     {
       name: "ACER Aspire Lite 16/Core i5-1235U/8GB RAM /512 GB SSD/16''/ Win 11H",
-      price: 20.999,
+      price: 20999,
       stock: 2,
       category: "Laptop",
     },
 
     {
       name: "SAMSUNG Galaxy Tab A9+ 8/128GB Tablet Mistik Gümüş",
-      price: 7.999,
+      price: 7999,
       stock: 5,
       category: "Tablet",
     },
 
     {
       name: "LENOVO Tab M11 LTE 11 inç 8/128GB Folio Kılıf+ Kalem Tablet",
-      price: 9.999,
+      price: 9999,
       stock: 2,
       category: "Tablet",
     },
     {
       name: "HP LaserJet M111w Yazıcı Beyaz",
-      price: 6.399,
+      price: 6399,
       stock: 5,
       category: "Yazıcı",
     },
     {
       name: "EPSON L8050 EcoTank Renkli Tanklı Fotoğraf Yazıcısı",
-      price: 17.999,
+      price: 17999,
       stock: 3,
       category: "Yazıcı",
     },
     {
       name: "LOGITECH G G733 Kablosuz Oyuncu Kulaklığı Beyaz",
-      price: 7.999,
+      price: 7999,
       stock: 5,
       category: "Kulaklık",
     },
